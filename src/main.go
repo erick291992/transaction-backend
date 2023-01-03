@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	fmt.Println("hello")
+	fmt.Println("hello API")
 
 	// connection, err := sql.Open("postgres", "postgresql://admin:secret@host.docker.internal:5432/main?sslmode=disable")
 
@@ -26,28 +26,6 @@ func main() {
 		panic(err)
 	}
 	defer connection.Close()
-
-	// Execute the SELECT COUNT(*) query.
-	var count int
-	err = connection.QueryRow("SELECT COUNT(*) FROM operations_types").Scan(&count)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	// Check if the count is 4.
-	if count >= 4 {
-		fmt.Println("There are already 4 rows in the operations_types table.")
-	} else {
-		fmt.Println("There are less than 4 rows in the operations_types table.")
-		_, err := connection.Exec(
-			"INSERT INTO operations_types (description) VALUES ($1), ($2), ($3), ($4)",
-			"Normal Purchase", "Purchase with installments", "Withdrawal", "Credit Voucher")
-
-		if err != nil {
-			fmt.Println(err.Error())
-		}
-	}
 
 	// Create a new Repo.
 	repo := db.NewRepo(connection)
