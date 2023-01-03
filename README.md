@@ -14,6 +14,8 @@
  
 ## Initial Setup
 - Clone the project first
+- make sure go is installed
+- .env.development is included in the project already (this is not recommended)
 
 Install migration
 - `$ brew install golang-migrate`
@@ -107,10 +109,8 @@ On success, returns a 200 status code and the newly created account object:
 ```json
 {
     "id": 1,
-    "accountID": 1,
-    "operationType": 1,
-    "amount": "100.0",
-    "eventDate": "2023-01-03T01:01:30.017127Z"
+    "description": "Normal Purchase",
+    "createdAt": "2023-01-03T01:01:19.237622Z"
 }
 ```
 
